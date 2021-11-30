@@ -1,3 +1,40 @@
-body {
-	overflow: none;
+body{
+	font-family: "Roboto";
+	overflow: hidden;
+}
+.left-arrow {
+	position: absolute;
+	left: 0px;
+	bottom: 20%;
+	font-size: 2em;
+}
+ol {
+	list-style: none;
+}
+li {
+	margin-top: 20px;
+}
+div.page {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px 50%;
+	background: white;
+	opacity: 0.5;
+}
+div.page[aria-enabled=true]:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+div.page.current{
+	opacity: 0.9;
+	cursor: auto;
+}
+div.slide {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+}
+div.slide.next {
+	z-index: -2;
 }
