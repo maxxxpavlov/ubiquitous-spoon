@@ -2,10 +2,13 @@
 	"name": "ReactMaterialUISite",
 	"version": "0.0.1",
 	"scripts": {
-		"watch": "babel --watch pageWithDOMContainer.jsx --out-dir . --presets react-app/dev"
+		"watch": "babel --watch src --out-dir build --presets react-app/dev",
+	    "start": "react-scripts start",
+	    "eject": "react-scripts eject"
 	},
 	"dependencies": {
 		"babel-cli": "6",
-		"babel-preset-react-app": "3"
+		"babel-preset-react-app": "3",
+		"react-scripts": "^4.0.3"
 	}
 }
