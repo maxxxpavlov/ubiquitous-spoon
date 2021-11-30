@@ -1,0 +1,11 @@
+{
+	"name": "ReactMaterialUISite",
+	"version": "0.0.1",
+	"scripts": {
+		"watch": "babel --watch pageWithDOMContainer.jsx --out-dir . --presets react-app/dev"
+	},
+	"dependencies": {
+		"babel-cli": "6",
+		"babel-preset-react-app": "3"
+	}
+}
