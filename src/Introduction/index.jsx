@@ -1,5 +1,7 @@
-import './firstSlide.css'
-export default function FirstSlide(props) {
+import './Introduction.css'
+
+
+export default function Intro(props) {
 	const { status, moveToNext, onOpen, idx, toRight } = props
 	if(status === 'openning' && onOpen){
 		setTimeout(() => onOpen(idx), 1300)
@@ -18,7 +20,8 @@ export default function FirstSlide(props) {
 					<a href="https://hh.ru" target="_blank" nofollow><b>Перейти к резюме</b></a>
 				</div>			
 				<div className="footer">
-				<button onClick={moveToNext}>Продолжить </button></div>
+				<button className="next" onClick={moveToNext}>Продолжить </button></div>
 			</div>	
-		</div>)
+		</div>
+		)
 }

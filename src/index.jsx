@@ -2,19 +2,19 @@ import 'normalize.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './app.css'
-import FirstSlide from './firstSlide.jsx'
+import IntroSlide from './Introduction'
+import ShopSlide from './ShopApp'
 
 const STATUS = {
   openning: 'openning',
   open: 'open',
   closing: 'closing'
 }
-// Refactor this code
 
-const slides = [FirstSlide, FirstSlide]
+const slides = [IntroSlide, ShopSlide]
 function App(props) {
   const [slider, setSliderState] = React.useState({
-    idx: 0,
+    idx: 1,
     status: STATUS.openning,
     nextPage: null
   })
