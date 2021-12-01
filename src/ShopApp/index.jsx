@@ -2,7 +2,6 @@ import styles from './ShopApp.module.css'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { useEffect } from 'react'
-import Iframe from './iframe'
 import App from './app/index'
 
 export default function Intro(props) {

@@ -6,13 +6,14 @@ import IntroSlide from './Introduction'
 import ShopSlide from './ShopApp'
 import ShopApp from './ShopApp/app'
 
+
 const STATUS = {
   openning: 'openning',
   open: 'open',
   closing: 'closing'
 }
-
 const slides = [IntroSlide, ShopSlide]
+
 function App(props) {
   const [slider, setSliderState] = React.useState({
     idx: 1,
