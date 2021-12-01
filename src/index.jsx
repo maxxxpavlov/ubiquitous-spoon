@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import './app.css'
 import IntroSlide from './Introduction'
 import ShopSlide from './ShopApp'
+import ShopApp from './ShopApp/app'
 
 const STATUS = {
   openning: 'openning',
@@ -18,6 +19,9 @@ function App(props) {
     status: STATUS.openning,
     nextPage: null
   })
+  if(document.location.hash === '#shop'){
+    return <ShopApp></ShopApp>
+  }
   console.log(slider)
   if(slider.nextPage !== null && (slider.status === STATUS.open)) {
     setSliderState({idx: slider.idx, nextPage: slider.nextPage, status: STATUS.closing})

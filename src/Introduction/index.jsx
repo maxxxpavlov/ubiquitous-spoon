@@ -20,7 +20,7 @@ export default function Intro(props) {
 					<a href="https://hh.ru" target="_blank" nofollow><b>Перейти к резюме</b></a>
 				</div>			
 				<div className="footer">
-				<button className="next" onClick={moveToNext}>Продолжить </button></div>
+				<button className="next" onClick={moveToNext}>Начать</button></div>
 			</div>	
 		</div>
 		)

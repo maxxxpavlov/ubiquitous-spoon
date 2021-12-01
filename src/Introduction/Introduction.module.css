@@ -3,7 +3,7 @@
 	height: 100vh;
 	overflow: none;
 	display: block;
-	background: url(1630412-blur.jpg) no-repeat center/120%;
+	background: url(1630412.jpg) no-repeat center/120%;
 }
 .background.openning {
 	animation-duration: 1s;
@@ -31,10 +31,6 @@
 }
 .content.hidden {
 	display: none;
-}
-.description-flex-box {
-	display: flex;
-	flex-direction: row;
 }
 .text {
 	font-size: 1.1em;
@@ -104,19 +100,10 @@ button.next:hover {
 		font-size: 10px;
 	}
 }
-
-div.iphone {
-	background: url(iphone.png) no-repeat;
-    width: 215px;
-    height: 425px;
-    padding: 20px 20px 20px 20px;
-    background-size: contain;
+a {
+	text-decoration: none;
+	cursor: pointer;
 }
-div#shop-app {
-	position: relative;
-	background: white;
-	overflow-y: auto;
-	top: 38px;
-	height: 350px;
-	width: 197px;
+a:visited {
+	color: inherit;
 }
