@@ -1,7 +1,10 @@
 * {
 	font-family: "Montserrat";
-	overflow: hidden;
 }
+* {
+      touch-action: manipulation;
+}
+body {background: white}
 .left-arrow {
 	position: absolute;
 	left: 0px;
