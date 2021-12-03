@@ -107,5 +107,5 @@ function App() {
   );
 }
 
-const DOMContainer = document.querySelector("#React-DOM-Container");
+const DOMContainer = document.querySelector("#root");
 ReactDOM.render(<App />, DOMContainer);
