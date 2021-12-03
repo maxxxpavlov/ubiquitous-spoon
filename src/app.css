@@ -1,43 +1,44 @@
 * {
-	font-family: "Montserrat";
+  font-family: "Montserrat";
+  touch-action: manipulation;
 }
-* {
-      touch-action: manipulation;
+body {
+  background: white;
+  overflow-x: hidden;
 }
-body {background: white}
 .left-arrow {
-	position: absolute;
-	left: 0px;
-	bottom: 20%;
-	font-size: 2em;
+  position: absolute;
+  left: 0px;
+  bottom: 20%;
+  font-size: 2em;
 }
 ol {
-	list-style: none;
+  list-style: none;
 }
 li {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 div.page {
-	width: 20px;
-	height: 20px;
-	border-radius: 10px 50%;
-	background: white;
-	opacity: 0.5;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px 50%;
+  background: white;
+  opacity: 0.5;
 }
-div.page[aria-enabled=true]:hover {
-	opacity: 0.9;
-	cursor: pointer;
+div.page[aria-enabled="true"]:hover {
+  opacity: 0.9;
+  cursor: pointer;
 }
-div.page.current{
-	opacity: 0.9;
-	cursor: auto;
+div.page.current {
+  opacity: 0.9;
+  cursor: auto;
 }
 div.slide {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
 div.slide.next {
-	z-index: -2;
+  z-index: -2;
 }

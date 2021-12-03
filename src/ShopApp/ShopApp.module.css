@@ -1,9 +1,9 @@
 .background {
   width: 100vw;
   height: 100vh;
-  overflow: none;
+  overflow: auto;
   display: block;
-  background: url(media/1630412-blur.jpg) no-repeat center/120%;
+  background: url(media/1630412-blur.jpg) #edb7d9 no-repeat center/120%;
 }
 .background.openning {
   animation-duration: 1s;
@@ -39,8 +39,8 @@
   max-width: 70vw;
   gap: 20px;
   min-height: 65vh;
-  height: 65vh;
   align-items: center;
+  margin: auto;
 }
 .text {
   font-size: 1.1em;
@@ -101,17 +101,24 @@ button.next:hover {
 div.iphone {
   background: url(media/iphone.png) no-repeat;
   width: 317px;
-  height: 520px;
+  height: 680px;
   padding: 30px 25px 0px 30px;
   background-size: cover;
+  margin: auto;
 }
 div.shop-app {
   position: relative;
   background: black;
   overflow: none;
   top: 38px;
-  height: 480px;
+  height: 555px;
   width: 300px;
+}
+.explanators {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80vh;
 }
 .explanation {
   text-shadow: 10px 2px 15px white;
@@ -130,4 +137,12 @@ div.shop-app {
 .frame {
   border: none;
   background: black;
+}
+.code-link {
+  font-weight: 500;
+  text-shadow: 0px 2px 15px white;
+
+}
+div.link {
+  margin-top: 20px;
 }

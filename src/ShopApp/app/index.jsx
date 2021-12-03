@@ -170,22 +170,18 @@ function TextButton({ onClick, children, disabled }) {
   );
 }
 // Если проиложение запущено в iframe, уменьшить размер основного шрифта.
-//  пересчитается rem, что уменьшит шрифт на всей странице
+//  пересчитается rem, что меняет шрифт на всей странице
 if (window.self !== window.top) {
   var sheet = document.styleSheets[0];
-  sheet.insertRule(":root{font-size: 1px}");
+  sheet.insertRule(":root{font-size: 13px}");
 }
 
 /**
  * Точка входа в приложение
  * Application entry point
  *
- * В нём находится код для подсветки секций в iframe
  * @component
  */
-const HIGHLIGHTENABLE_ELEMENT = {
-  SECTIONS: "SECTIONS",
-};
 export default function App() {
   return (
     <ThemeProvider theme={customTheme}>
@@ -368,7 +364,7 @@ function Cart({ cart, removeItemFromCart, setCartItemCount }) {
  * @param {number} props.previousPrice
  * @param {number} props.price
  * @param {number} props.count
- * @param {string} props.imageUrl
+ * @param {string} props.image
  * @param {function} props.removeItemFromCart
  * @param {function} props.setCartItemCount
  */
