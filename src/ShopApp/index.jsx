@@ -1,8 +1,5 @@
 import styles from "./ShopApp.module.css";
-import ReactDOM from "react-dom";
 import React from "react";
-import { useEffect } from "react";
-import App from "./app/index";
 
 export default function Intro(props) {
   const { status, moveToNext, onOpen, idx, toRight } = props;
@@ -59,9 +56,10 @@ export default function Intro(props) {
               {status === "open" && (
                 <iframe
                   src="#shop"
+                  title="Заказать"
                   id="shop-app-iframe"
-                  width="197px"
-                  height="348px"
+                  width="100%"
+                  height="100%"
                   className={styles.frame}
                 ></iframe>
               )}
@@ -87,11 +85,6 @@ export default function Intro(props) {
               {testExplanators}
             </div>
           </div>
-        </div>
-        <div className={styles.footer}>
-          <button className={styles.next} onClick={moveToNext}>
-            Продолжить
-          </button>
         </div>
       </div>
     </div>

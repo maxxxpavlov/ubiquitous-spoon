@@ -2,10 +2,8 @@ import * as React from "react";
 import { styled } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
 import ThemeProvider from "@mui/system/ThemeProvider";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import GlobalStyles from "@mui/material/GlobalStyles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import CloseIcon from "@mui/icons-material/Close";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -26,6 +24,7 @@ import Cursor from "./media/cursor.png";
 import ForDogImage from "./media/fordogs.jpg";
 import ILoveYouImage from "./media/iloveyou.jpg";
 
+import { responsiveFontSizes } from "@mui/material/styles";
 /**
  * Для более быстрого изучения код всей страницы находится в одном файле.
  * Функции идут сверху вних так же как компоненты идут от верхнего уровня иеархии к нижнему на странице.
@@ -94,7 +93,7 @@ const PAYMENT_METHOD_NAMES = {
  * Определение темы и стилей компонентов
  * Defining custom theme and components' styles
  */
-const customTheme = createTheme({
+let customTheme = createTheme({
   palette: {
     primary: {
       main: "#cb11ab",
@@ -122,6 +121,7 @@ const customTheme = createTheme({
     },
   },
 });
+customTheme = responsiveFontSizes(customTheme);
 customTheme.typography.h1 = {
   ...customTheme.typography.h1,
   fontSize: "1.2rem",
@@ -169,43 +169,35 @@ function TextButton({ onClick, children, disabled }) {
     </Typography>
   );
 }
+// Если проиложение запущено в iframe, уменьшить размер основного шрифта.
+//  пересчитается rem, что уменьшит шрифт на всей странице
+if (window.self !== window.top) {
+  var sheet = document.styleSheets[0];
+  sheet.insertRule(":root{font-size: 1px}");
+}
 
 /**
  * Точка входа в приложение
  * Application entry point
+ *
+ * В нём находится код для подсветки секций в iframe
  * @component
  */
+const HIGHLIGHTENABLE_ELEMENT = {
+  SECTIONS: "SECTIONS",
+};
 export default function App() {
-  const [state, setState] = React.useState({ hover: false, highlight: null });
-  const hoverBackground = (
-    <Box
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        background: "white",
-        zIndex: 2000,
-        opacity: 0.9,
-      }}
-    ></Box>
-  );
-  // window.onmessage = function (e) {
-  //   const newState = JSON.parse(e.data);
-  //   setState(newState);
-  // };
-  let hightlightStyles = {};
-  if (state.hover) {
-    hightlightStyles = {
-      zIndex: state.highlight === 1 ? 3000 : "inherit",
-      border: "5px black double",
-    };
-  }
   return (
     <ThemeProvider theme={customTheme}>
-      {/**<GlobalStyles styles={{ "*": {cursor: `url(${Cursor}),default`} }} />*/}
-      {state.hover && hoverBackground}
+      <GlobalStyles
+        styles={{
+          "*": {
+            [customTheme.breakpoints.down("md")]: {
+              cursor: `url(${Cursor}),default`,
+            },
+          },
+        }}
+      />
       <Checkout />
     </ThemeProvider>
   );
@@ -399,10 +391,10 @@ function CartItem({
       direction="row"
       sx={{ justifyContent: "space-between", alignItems: "center" }}
     >
-      <Grid item xs={2} lg={1}>
+      <Grid item xs={3} sm={2} lg={1}>
         <CartItemImage src={image} title={title} />
       </Grid>
-      <Grid item xs={10} lg={7}>
+      <Grid item xs={9} md={7}>
         {description}
       </Grid>
       <Grid item xs={12} lg={3}>
@@ -506,7 +498,7 @@ function CartItemActions({ itemsCount, removeItemFromCart, setCartItemCount }) {
 
   return (
     <Grid container direction="row" sx={{ justifyContent: "space-between" }}>
-      <Grid item xs={6} lg={8}>
+      <Grid item xs={10}>
         <Button
           color="secondaryContrast"
           aria-label="Уменьшить количество товара на один"
@@ -524,7 +516,7 @@ function CartItemActions({ itemsCount, removeItemFromCart, setCartItemCount }) {
           +
         </Button>
       </Grid>
-      <Grid item xs={2} lg={4}>
+      <Grid item xs={2}>
         <IconButton
           aria-label="Удалить из корзины"
           color="secondary"
@@ -648,7 +640,7 @@ function ChoosePaymentOptionDialog({
 }) {
   return (
     <Dialog fullWidth={true} maxWidth="xs" open={open} onClose={onClose} lg={6}>
-      <Box sx={{p: 4, mx: "auto"}}>
+      <Box sx={{ p: 4, mx: "auto" }}>
         <FormControl component="fieldset">
           <FormLabel component="h7">Способ оплаты</FormLabel>
           <RadioGroup
@@ -665,7 +657,9 @@ function ChoosePaymentOptionDialog({
               />
             ))}
           </RadioGroup>
-          <Button onClick={onClose} sx={{marginTop: 2}}>Сохранить</Button>
+          <Button onClick={onClose} sx={{ marginTop: 2 }}>
+            Сохранить
+          </Button>
         </FormControl>
       </Box>
     </Dialog>
@@ -686,10 +680,10 @@ function Summary({ summary }) {
             direction="row"
             sx={{ justifyContent: "space-between" }}
           >
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={4}>
               <Typography variant="h1">Итого</Typography>
             </Grid>
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={4}>
               <Typography align="right" variant="h1">
                 {summary.total} Р
               </Typography>
@@ -702,10 +696,10 @@ function Summary({ summary }) {
             direction="row"
             sx={{ justifyContent: "space-between" }}
           >
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={5}>
               <Typography>Товар, {summary.count}шт</Typography>
             </Grid>
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={4}>
               <Typography align="right">{summary.total} Р</Typography>
             </Grid>
           </Grid>
@@ -716,10 +710,10 @@ function Summary({ summary }) {
             direction="row"
             sx={{ justifyContent: "space-between" }}
           >
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={4}>
               <Typography>Скидка</Typography>
             </Grid>
-            <Grid item xs={4} lg={4}>
+            <Grid item xs={4}>
               <Typography align="right">{summary.discount} Р</Typography>
             </Grid>
           </Grid>
