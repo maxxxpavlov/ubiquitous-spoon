@@ -1,2 +1,2 @@
-# Presentation of my skills
 ![](heading.jpg)
+## Skills introduction
