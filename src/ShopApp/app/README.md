@@ -3,6 +3,6 @@
 
 [Открыть приложение]: https://exapmle.com/shop
 
-![Rocket Ship](rocket-ship-rocket-svgrepo-com.svg "rocket")
+![Rocket Ship](rocket-ship-rocket-svgrepo-com.svg =50x50)
 Легко-читаемый, декларативный, строгий код на JavaScript с JSX препроцессором. Его можно быстро разложить по принципу тип/компонент/файл. Все компоненты подчинены одному способу расположения через Grid, поэтому их легко редактировать и разбивать.
 

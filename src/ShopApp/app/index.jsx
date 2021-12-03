@@ -24,7 +24,6 @@ import Cursor from "./media/cursor.png";
 import ForDogImage from "./media/fordogs.jpg";
 import ILoveYouImage from "./media/iloveyou.jpg";
 
-import { responsiveFontSizes } from "@mui/material/styles";
 /**
  * Для более быстрого изучения код всей страницы находится в одном файле.
  * Функции идут сверху вних так же как компоненты идут от верхнего уровня иеархии к нижнему на странице.
@@ -121,7 +120,6 @@ let customTheme = createTheme({
     },
   },
 });
-customTheme = responsiveFontSizes(customTheme);
 customTheme.typography.h1 = {
   ...customTheme.typography.h1,
   fontSize: "1.2rem",
