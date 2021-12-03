@@ -1,13 +1,11 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { styled, ThemeProvider } from '@mui/system';
+import { styled } from '@mui/system';
 import { createTheme } from '@mui/material/styles'
 import GlobalStyles from '@mui/material/GlobalStyles';
+import ThemeProvider from '@mui/system/ThemeProvider'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Cursor from './cursor.png'
-import ForDogImage from './fordogs.jpg'
-import ILoveYouImage from './iloveyou.jpg'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
@@ -24,13 +22,15 @@ import IconButton from '@mui/material/IconButton'
 import Link from '@mui/material/Link'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
-import Slide from '@mui/material/Slide';
 import Dialog from '@mui/material/Dialog';
-import { Card, CardHeader, Paper } from '@mui/material'
+import Paper from '@mui/material/Paper'
+
+import Cursor from './media/cursor.png'
+import ForDogImage from './media/fordogs.jpg'
+import ILoveYouImage from './media/iloveyou.jpg'
 
 /*
- * Для более быстрого изучения код всей страницы находится в одном файлы.
- * Это не антипаттерн если более тонкое разделение кода не оправдано снижением издержек при командной работе.
+ * Для более быстрого изучения код всей страницы находится в одном файле.
  * Функции идут сверху вних так же как компоненты идут от верхнего уровня иеархии к нижнему на странице.
  * Поэтому вам достаточно прочитать код сверху вних чтобы его понять.
  * 
@@ -44,7 +44,7 @@ import { Card, CardHeader, Paper } from '@mui/material'
 
 /* 
  * Позиция в корзине 
- * Construct new item in the cart
+ * Construct an item in the cart
  */
 function CartProductItem(title, properties, price, previousPrice, image, count = 1){
   Object.assign(this, { title, properties, price, previousPrice, image, count })
@@ -64,6 +64,11 @@ const PAYMENT_METHOD_NAMES = {
   [PAYMENT_METHOD.APPLE_PAY]: "Apple pay",
   [PAYMENT_METHOD.GOOGLE_PAY]: "Google pay",
 }
+
+/*
+ * Определение темы и стилей компонентов
+ * Defining custom theme and components' styles
+*/
 
 const customTheme = createTheme({
   palette: {
@@ -89,7 +94,6 @@ const customTheme = createTheme({
     }
   }
 });
-console.log(customTheme)
 customTheme.typography.h1 = {
   ...customTheme.typography.h1,
   fontSize: '1.2rem',
@@ -101,8 +105,6 @@ customTheme.typography.h1 = {
   },
 }
 
-
-
 const PaperCard = styled(Box)({
     padding: 20,
     borderRadius: 12,
@@ -113,6 +115,15 @@ const PaperCard = styled(Box)({
     marginBottom: 2,
   })
 
+function TextButton({ onClick, children }){
+  return <Typography variant="body2" align="right" color="primary" sx={{cursor: "pointer"}} onClick={onClick}>{children}</Typography>
+}
+
+/*
+ * Точка входа в приложение
+ * Application entry point
+ * @component
+ */
 export default function App() {
   const [state, setState] = React.useState({hover: false, highlight: null})
   const hoverBackground = <Box sx={{position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", background: "white", zIndex: 2000, opacity: 0.9}}></Box>
@@ -131,9 +142,6 @@ export default function App() {
     <ThemeProvider theme={customTheme}>
      {/*<GlobalStyles styles={{ "*": {cursor: `url(${Cursor}),default`} }} />*/}
      {state.hover && hoverBackground}
-      {/*<AppBar sx={hightlightStyles}>
-        <Toolbar>Name</Toolbar>
-      </AppBar>*/}
       <Checkout />
     </ThemeProvider>
     )
@@ -141,55 +149,93 @@ export default function App() {
 
 /*
  * Составление заказа в Интернет-магазине
- * Checkout in shop application
+ * Checkout in the shop application
+ *
+ * @description Содержит в себе все состояние страницы и объявляет методы для работы с состоянием
+ *
  * @component
  */
 function Checkout() {
   const [cart, setCart] = React.useState(defaultCart)
   const removeItemFromCart = (itemId) => setCart(cart.filter((item, id) => itemId !== id))
-  const setItemCount = (itemId, newCount) =>
+  const setCartItemCount = (itemId, newCount) =>
    setCart(cart.map((item, id) => itemId === id ? { ...item, count: newCount } : item))
+
   const [paymentMethod, setPaymentMethod] = React.useState(PAYMENT_METHOD.CARD)
+
   const summary = {
     total: cart.reduce((prev, item) => item.price * item.count + prev, 0),
     count: cart.length,
     discount: cart.reduce((prev, item) => (item.price - item.previousPrice) * item.count + prev, 0),
   }
+
   return (
-            <Grid container direction="row" spacing={2} sx={{justifyContent: "center", marginTop: {lg: 10}}} >
-              <Grid item lg={8} sx={{ gridRow: '1', gridColumn: '1 / 4' }}>
-                <Grid container direction="column" spacing={3}>
-                  <Grid item lg={8}>
-                    <PaperCard >
-                      <Cart {...{cart, removeItemFromCart, setItemCount}} />
-                    </PaperCard>
-                  </Grid>
-                  <Grid item lg={8}>
-                    <Grid container direction="row" spacing={2}>
-                      <Grid item lg={6}>
-                        <PaperCard >
-                          <DeliveryOption />
-                        </PaperCard>
-                      </Grid>
-                      <Grid item xs={12} lg={6}>
-                        <PaperCard >
-                          <PaymentOption paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
-                        </PaperCard>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} lg={3} spacing={2}>
-                <PaperCard>
-                  <Summary summary={summary}/>
-                </PaperCard>
+          <Grid container direction="row" spacing={2} sx={{justifyContent: "center", marginTop: { lg: 10 }}} >
+            <Grid item lg={8}>
+              <Grid container direction="column" spacing={3}>
+                <CartSection {...{ cart, removeItemFromCart, setCartItemCount }}></CartSection>
+                <OptionSection {...{ paymentMethod, setPaymentMethod }}></OptionSection>
               </Grid>
             </Grid>
+            <SummarySection {...summary}></SummarySection>
+          </Grid>
           )
 }
 
-// Cart definition
+/* 
+ * Секция с корзиной
+ * First section with cart
+ * @component
+ */
+function CartSection(props) {
+  return (
+          <Grid item lg={8}>
+            <PaperCard >
+              <Cart {...props} />
+            </PaperCard>
+          </Grid>
+          )
+}
+
+/* 
+ * Секция с адресом доставки и способом оплаты
+ * Section containing Delivery option and payment option
+ * @component
+ */
+function OptionSection({ paymentMethod, setPaymentMethod }) {
+  return (
+          <Grid item lg={8}>
+            <Grid container direction="row" spacing={2}>
+              <Grid item lg={6}>
+                <PaperCard >
+                  <DeliveryOption />
+                </PaperCard>
+              </Grid>
+              <Grid item xs={12} lg={6}>
+                <PaperCard >
+                  <PaymentOption paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+                </PaperCard>
+              </Grid>
+            </Grid>
+          </Grid>
+          )
+}
+
+/* 
+ * Секция с ИТОГО и кнопкой заказа
+ * Summary section
+ *
+ * @component
+ */
+function SummarySection(summary) {
+  return (
+          <Grid item xs={12} lg={3} spacing={2}>
+            <PaperCard>
+              <Summary summary={summary}/>
+            </PaperCard>
+          </Grid>
+         )
+}
 
 /*
  * Корзина
@@ -198,15 +244,15 @@ function Checkout() {
  * @component
  * @param {CartProductItem[]} props.cart
  * @param {function} props.removeItemFromCart
- * @param {function} props.setItemCount
+ * @param {function} props.setCartItemCount
  */
-function Cart({ cart, removeItemFromCart, setItemCount }) {
+function Cart({ cart, removeItemFromCart, setCartItemCount }) {
   const cartItems = 
     cart.map(
-              (cartItem, itemId) =>
+              (cartItem, cartItemId) =>
                 <CartItem {...cartItem}
-                  removeItemFromCart={() => removeItemFromCart(itemId)}
-                  setItemCount={(newCount) => setItemCount(itemId, newCount)}>
+                  removeItemFromCart={() => removeItemFromCart(cartItemId)}
+                  setCartItemCount={(newCount) => setCartItemCount(cartItemId, newCount)}>
                 </CartItem>
             )
   return (
@@ -216,21 +262,12 @@ function Cart({ cart, removeItemFromCart, setItemCount }) {
                 <Typography variant="h1">Корзина <sup>{cart.length}</sup></Typography>
               </Grid>
               <Grid item> 
-                <Grid container direction="column" sx={{justifyContent: 'evenly-spaced'}}>
+                <Grid container direction="column" sx={{ justifyContent: 'evenly-spaced' }}>
                   {cartItems.map(cartItem => <Grid item>{cartItem}</Grid>)}
                 </Grid>
               </Grid>
               <Grid item xs={12}>
-                <Grid container direction="row">
-                  <Grid item xs={2} lg={1}>
-                    <PriorityHighIcon sx={{width: 1}} color="secondary" />
-                  </Grid>
-                  <Grid item xs={10}>
-                    <Typography>
-                      На все товары в корзине действует <Link href="#">скидка</Link> постоянного покупателя
-                    </Typography>
-                  </Grid>
-                </Grid>
+                <CartWarning></CartWarning>
               </Grid>
             </Grid>
           </Box>
@@ -250,9 +287,9 @@ function Cart({ cart, removeItemFromCart, setItemCount }) {
  * @param {number} props.count
  * @param {string} props.imageUrl
  * @param {function} props.removeItemFromCart
- * @param {function} props.setItemCount
+ * @param {function} props.setCartItemCount
  */ 
-function CartItem({title, properties, previousPrice, price, image, count, removeItemFromCart, setItemCount}) {
+function CartItem({title, properties, previousPrice, price, image, count, removeItemFromCart, setCartItemCount}) {
  const description = <CartItemDescription {...{previousPrice, price, title, properties}} />
   return (
           <Grid container direction="row"  sx={{justifyContent: 'space-between', alignItems: 'center'}}>
@@ -263,7 +300,7 @@ function CartItem({title, properties, previousPrice, price, image, count, remove
               {description}
             </Grid>
             <Grid item xs={12} lg={3}>
-              <CartItemActions itemsCount={count} {...{removeItemFromCart, setItemCount}}></CartItemActions>
+              <CartItemActions itemsCount={count} {...{removeItemFromCart, setCartItemCount}}></CartItemActions>
             </Grid>
           </Grid>
           )
@@ -319,9 +356,7 @@ function CartItemDescription({ price, previousPrice, title, properties }){
 function CartItemPrice({ children, previousPrice, currencySymbol }) {
   const previousPriceElement = Number.isInteger(previousPrice) ? <Typography component="span" color="secondary" sx={{textDecoration: "line-through"}} variant="body2">{previousPrice} {currencySymbol}</Typography> : null
   return (
-          <React.Fragment>
             <Typography component="span">{children} {currencySymbol} {previousPriceElement}</Typography>
-          </React.Fragment>
         )
 }
 
@@ -333,17 +368,18 @@ function CartItemPrice({ children, previousPrice, currencySymbol }) {
  * @param {Object} props
  * @param {number} props.itemsCount
  * @param {function} props.removeItemFromCart
- * @param {function} props.setItemCount
+ * @param {function} props.setCartItemCount
  */
-function CartItemActions({ itemsCount, removeItemFromCart, setItemCount }){
-  const decItemCount = () => setItemCount(itemsCount - 1)
-  const incItemCount = () => setItemCount(itemsCount + 1)
+function CartItemActions({ itemsCount, removeItemFromCart, setCartItemCount }){
+  const decItemCount = () => setCartItemCount(itemsCount - 1)
+  const incItemCount = () => setCartItemCount(itemsCount + 1)
+
   return (
       <Grid container direction="row" sx={{justifyContent: "space-between"}}>
         <Grid item xs={6} lg={8}>
-            <Button color="secondaryContrast" disabled={itemsCount === 1} onClick={decItemCount}>-</Button>
+            <Button color="secondaryContrast" aria-label="Уменьшить количество товара на один" disabled={itemsCount === 1} onClick={decItemCount}>-</Button>
              {itemsCount} 
-            <Button color="secondaryContrast" onClick={incItemCount}>+</Button>
+            <Button color="secondaryContrast" aria-label="Увеличить количество товара на один" onClick={incItemCount}>+</Button>
         </Grid>
         <Grid item xs={2} lg={4}>
           <IconButton aria-label="Удалить из корзины" color="secondary" component="span" onClick={removeItemFromCart}>
@@ -353,6 +389,26 @@ function CartItemActions({ itemsCount, removeItemFromCart, setItemCount }){
       </Grid>
     )
 }
+
+/*
+ * Предупреждение в корзине
+ * @component
+ */
+function CartWarning(){
+  return (
+          <Grid container direction="row">
+            <Grid item xs={2} lg={1}>
+              <PriorityHighIcon sx={{width: 1}} color="secondary" />
+            </Grid>
+            <Grid item xs={10}>
+              <Typography>
+                На все товары в корзине действует <Link href="#">скидка</Link> постоянного покупателя
+              </Typography>
+            </Grid>
+          </Grid>
+          )
+}
+
 // End cart definition
 
 // Delivery definition
@@ -383,17 +439,17 @@ function DeliveryOption(){
           )
 }
 
-// End delivery definitions
-
-// Payment options definitions
-
+/*
+ * Способ оплаты
+ * @component
+ */
 function PaymentOption({ paymentMethod, setPaymentMethod }) {
   const [dialogOpen, setDialog] = React.useState(false)
   return (
           <Box>
             <Grid container direction="column">
               <Grid item xs={12}>
-                <Grid container direction="row" sx={{alignItems: "center", justifyContent: "space-between"}}>
+                <Grid container direction="row" sx={{ alignItems: "center", justifyContent: "space-between" }}>
                   <Grid item xs={6} lg={4}>
                     <Typography variant="h6" component="span">Способ оплаты</Typography>                  
                   </Grid>
@@ -416,10 +472,6 @@ function PaymentOption({ paymentMethod, setPaymentMethod }) {
     )
 }
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 function ChoosePaymentOptionDialog({ open, onClose, paymentMethod, setPaymentMethod }){
   return (
           <Dialog
@@ -432,7 +484,7 @@ function ChoosePaymentOptionDialog({ open, onClose, paymentMethod, setPaymentMet
                   edge="start"
                   color="inherit"
                   onClick={onClose}
-                  aria-label="close"
+                  aria-label="Закрыть"
                 >
                   <CloseIcon />
                 </IconButton>
@@ -461,12 +513,11 @@ function ChoosePaymentOptionDialog({ open, onClose, paymentMethod, setPaymentMet
     )
 }
 
-// end payment option definitions
-
-// Summary definition
-
+/*
+ * Итого
+ * @component
+ */
 function Summary({summary}) {
-  // discount count total
   return (
           <Box>
             <Grid container direction="column">
@@ -506,10 +557,4 @@ function Summary({summary}) {
             </Grid>
           </Box>
     )
-}
-
-// end summary definition
-
-function TextButton({ onClick, children }){
-  return <Typography variant="body2" align="right" color="primary" sx={{cursor: "pointer"}} onClick={onClick}>{children}</Typography>
 }
