@@ -1,6 +1,11 @@
 {
-  "name": "skill-slider",
+  "name": "lets-know-each-other",
   "version": "0.0.1",
+  "homepage": "https://maxxxpavlov.github.io/ubiquitous-spoon/",
+  "author": {
+    "name": "Maksim",
+    "url": "https://github.com/maxxxpavlov"
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

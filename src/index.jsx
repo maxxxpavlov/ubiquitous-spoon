@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import "./app.css";
 import IntroSlide from "./Introduction";
 import ShopSlide from "./ShopApp";
-import ShopApp from "./ShopApp/app";
+import ShopApp from "./Checkout";
 
 const STATUS = {
   openning: "openning",
