@@ -170,7 +170,7 @@ function TextButton({ onClick, children, disabled }) {
 // Если проиложение запущено в iframe, уменьшить размер основного шрифта.
 //  пересчитается rem, что меняет шрифт на всей странице
 if (window.self !== window.top) {
-  var sheet = document.styleSheets[0];
+  const sheet = document.styleSheets[0];
   sheet.insertRule(":root{font-size: 13px}");
 }
 
@@ -623,7 +623,8 @@ function PaymentOption({ paymentMethod, setPaymentMethod }) {
 
 /**
  * Диалог выбора способа оплаты
- *
+ * Dialog to choose payment option
+ * 
  * @component
  */
 function ChoosePaymentOptionDialog({
@@ -661,7 +662,8 @@ function ChoosePaymentOptionDialog({
 }
 
 /**
- * Итого
+ * Итого с кнопкой заказа
+ * Checkout summary with order button
  * @component
  */
 function Summary({ summary }) {

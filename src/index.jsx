@@ -2,15 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
 import "./app.css";
-
 import Slider from './Slider'
-import ShopApp from "./Checkout";
 
 
 
 function App() {  
   if (document.location.hash === "#shop") {
-    return <ShopApp></ShopApp>;
+    const ShopApp = React.lazy(() => import('./Checkout'));
+    return <React.Suspense fallback={<div>Загрузка...</div>}><ShopApp></ShopApp></React.Suspense>;
   }
   return <Slider></Slider>
 }

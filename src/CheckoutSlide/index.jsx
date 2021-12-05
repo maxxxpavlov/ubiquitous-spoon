@@ -51,7 +51,7 @@ export default function ShopApp(props) {
               <h2 className={styles.heading}>
                 Страница заказа в магазине одежды
               </h2>
-              <p>Красивая страница совершения заказка в онлайн-магазине</p>
+              <p>Красивая страница совершения заказа в онлайн-магазине</p>
             </div>
             <div>
               <div className={styles.explanation} tabIndex={0}>
