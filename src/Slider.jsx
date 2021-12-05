@@ -77,7 +77,6 @@ export default function Slider() {
       ></NextSlide>
     );
   }
-  console.log(slider);
   return (
     <div>
       <div className={Styles.pagination}>

@@ -107,7 +107,7 @@ button.next:hover {
 .explanators {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 80vh;
   font-size: 10px; 
   /* Да, не использовать абсолютные единицы, но увы, так пока быстрее */
