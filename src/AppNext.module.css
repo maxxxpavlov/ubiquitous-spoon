@@ -1,0 +1,34 @@
+div.pagination-next-page-button {
+  display: inline-block;
+  margin-left: 10px;
+  animation-name: pagination-next-page-appear;
+  animation-duration: 1s;
+}
+@keyframes pagination-next-page-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+div.pagination-next-page-button span {
+  font-size: 1rem;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+div.page-number {
+  display: inline-block;
+}
+.pagination {
+  position: absolute;
+  left: 0px;
+  bottom: 20%;
+  font-size: 2em;
+}
+@media (max-width: 600px) {
+  .pagination {
+    left: -30px;
+  }
+}

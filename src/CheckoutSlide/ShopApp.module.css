@@ -4,20 +4,20 @@
   overflow: auto;
   display: block;
   background: url(media/1630412-blur.jpg) #edb7d9 no-repeat center/120%;
+	background-size: cover;
 }
 .background.openning {
   animation-duration: 1s;
   animation-name: start-slide;
 }
 @keyframes start-slide {
-  from {
-    background-size: 100%;
-  }
-  to {
-    background-size: 120%;
-  }
+	from {
+		transform: scale(1.2);
+	}
+	to {
+		transform: scale(1);
+	}
 }
-
 .content {
   display: flex;
   justify-content: center;

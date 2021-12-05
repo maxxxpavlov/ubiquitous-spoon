@@ -4,6 +4,7 @@
 	overflow: none;
 	display: block;
 	background: url(background.jpg) no-repeat center/120%;
+	background-size: cover;
 }
 .background.openning {
 	animation-duration: 1s;
@@ -11,10 +12,10 @@
 }
 @keyframes start-slide {
 	from {
-		background-size: 100%;
+		transform: scale(1.2);
 	}
 	to {
-		background-size: 120%;
+		transform: scale(1);
 	}
 }
 .content {
@@ -34,6 +35,7 @@
 }
 .text {
 	font-size: 1.1em;
+	text-align: center;
 }
 button.next {
 	color: #C2C2C2;

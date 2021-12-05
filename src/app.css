@@ -6,12 +6,6 @@ body {
   background: white;
   overflow-x: hidden;
 }
-.left-arrow {
-  position: absolute;
-  left: 0px;
-  bottom: 20%;
-  font-size: 2em;
-}
 ol {
   list-style: none;
 }
@@ -25,7 +19,7 @@ div.page {
   background: white;
   opacity: 0.5;
 }
-div.page[aria-enabled="true"]:hover {
+div.page[data-enabled="true"]:hover {
   opacity: 0.9;
   cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import styles from "./ShopApp.module.css";
+import styles from "./Outro.module.css";
 import React from "react";
 
 export default function ShopApp(props) {
@@ -32,29 +32,15 @@ export default function ShopApp(props) {
         }
       >
         <div className={styles["description-flex-box"]}>
-          <div className={styles.iphone}>
-            <div id="shop-app" className={styles["shop-app"]}>
-              {status === "open" && (
-                <iframe
-                  src="#shop"
-                  title="Пример приложения на React.js"
-                  id="shop-app-iframe"
-                  width="100%"
-                  height="100%"
-                  className={styles.frame}
-                ></iframe>
-              )}
-            </div>
-          </div>
           <div className={styles.explanators}>
             <div>
               <h2 className={styles.heading}>
-                Страница заказа в магазине одежды
+                Что я делаю лучше всего?
               </h2>
               <p>Красивая страница совершения заказка в онлайн-магазине</p>
             </div>
             <div>
-              <div className={styles.explanation} tabindex={0}>
+              <div className={styles.explanation} tabIndex={0}>
                 <h3>
                   Работает на фреймворке <lang lang="en">MaterialUI</lang>
                 </h3>
@@ -64,7 +50,7 @@ export default function ShopApp(props) {
                   веб-приложения.
                 </p>
               </div>
-              <div className={styles.explanation} tabindex={0}>
+              <div className={styles.explanation} tabIndex={0}>
                 <h3>Легко-читаемый первоклассный код</h3>
                 <p>
                   Код этого приложения написан в рамкам единого стиля и
@@ -72,7 +58,7 @@ export default function ShopApp(props) {
                   веб-разработке.
                 </p>
               </div>
-              <div className={styles.explanation} tabindex={0}>
+              <div className={styles.explanation} tabIndex={0}>
                 <h3>Адаптивная верстка</h3>
                 <p>
                   Этот сайт отображается правильно на маленьких и больших
@@ -84,21 +70,11 @@ export default function ShopApp(props) {
               <div className={styles.link}>
                 <a
                   className={styles["code-link"]}
-                  href="#shop"
+                  href="https://t.me/thepostal"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Открыть страницу на полный экран
-                </a>
-              </div>
-              <div className={styles.link}>
-                <a
-                  className={styles["code-link"]}
-                  href="https://github.com/maxxxpavlov/ubiquitous-spoon/tree/main/src/ShopApp/app"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Перейти к коду на Github 🐙
+                  Написать в телеграм
                 </a>
               </div>
             </div>
