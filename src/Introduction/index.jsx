@@ -13,8 +13,9 @@ export default function Intro(props) {
 			<div className={"content" + (status === 'closing' ? ' hidden' : '') + (status === 'openning' ? " openning" : "")}>
 				<div className="heading">Что это за сайт?</div>	
 				<div className="text">
-					<p>Этот сайт создан чтобы облегчить процесс рекрутинга.
-					<br/>Я в форме презентации расскажу о своих навыках и дам пощупать свои разработки</p>
+					<p>Это дополнение к резюме веб-разработчика.
+					<br/>Здесь вы найдете примеры моего кода, что поможет вам в процессе рекрутинга.
+					<br/>Здесь немного работ - я сделал акцент на ясности и простоте кода.</p>
 				</div>
 				<div className="links">
 					<a href="https://hh.ru/resume/68f87c1fff0979f6120039ed1f566c4361397a" target="_blank" rel="noreferrer"><b>Перейти к резюме</b></a>

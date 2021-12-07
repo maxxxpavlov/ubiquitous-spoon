@@ -24,7 +24,7 @@
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	top: 10em;
+	top: 19vh;
 }
 .content.openning {
 	animation-name: fade;
@@ -36,6 +36,7 @@
 .text {
 	font-size: 1.1em;
 	text-align: center;
+	line-height: 1.3;
 }
 button.next {
 	color: #C2C2C2;

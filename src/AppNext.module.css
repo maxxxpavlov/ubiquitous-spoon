@@ -24,7 +24,7 @@ div.page-number {
 .pagination {
   position: absolute;
   left: 0px;
-  bottom: 20%;
+  bottom: 0%;
   font-size: 2em;
 }
 @media (max-width: 600px) {

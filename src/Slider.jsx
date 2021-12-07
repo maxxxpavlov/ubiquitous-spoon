@@ -3,6 +3,7 @@ import "normalize.css";
 import "./app.css";
 import IntroSlide from "./Introduction";
 import ShopSlide from "./CheckoutSlide";
+import DictionarySlide from "./DictionarySlide";
 import Outro from "./Outro";
 import Styles from "./AppNext.module.css";
 
@@ -11,7 +12,7 @@ const STATUS = {
   open: "open",
   closing: "closing",
 };
-const slides = [IntroSlide, ShopSlide, Outro];
+const slides = [IntroSlide, ShopSlide,DictionarySlide, Outro];
 
 //TODO: Стыдно за такое перелистывание, торопился, перепишу это...
 export default function Slider() {
