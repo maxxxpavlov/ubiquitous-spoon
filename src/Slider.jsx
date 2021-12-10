@@ -8,7 +8,7 @@ import Outro from "./Outro";
 import Styles from "./AppNext.module.css";
 
 const STATUS = {
-  openning: "openning",
+  opening: "opening",
   open: "open",
   closing: "closing",
 };
@@ -18,7 +18,7 @@ const slides = [IntroSlide, ShopSlide,DictionarySlide, Outro];
 export default function Slider() {
   const [slider, setSliderState] = React.useState({
     idx: 0,
-    status: STATUS.openning,
+    status: STATUS.opening,
     nextPage: null,
   });
   if (slider.nextPage !== null && slider.status === STATUS.open) {
@@ -65,7 +65,7 @@ export default function Slider() {
     nextSlide = (
       <NextSlide
         idx={slider.nextPage}
-        status="openning"
+        status="opening"
         moveToNext={moveToNext}
         onOpen={(hisIdx) =>
           hisIdx === slider.nextPage &&

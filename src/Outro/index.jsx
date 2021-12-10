@@ -4,7 +4,7 @@ import React from "react";
 export default function ShopApp(props) {
   const { status, moveToNext, onOpen, idx, toRight } = props;
   React.useEffect(() => {
-    if (status === "openning" && onOpen) {
+    if (status === "opening" && onOpen) {
       setTimeout(() => onOpen(idx), 1300);
     }
   }, [status]);
@@ -21,14 +21,14 @@ export default function ShopApp(props) {
         " " +
         animationClass +
         " " +
-        (status === "openning" ? styles.openning : "")
+        (status === "opening" ? styles.opening : "")
       }
     >
       <div
         className={
           styles.content +
           (status === "closing" ? " hidden" : "") +
-          (status === "openning" ? " " + styles.openning : "")
+          (status === "opening" ? " " + styles.opening : "")
         }
       >
         <div className={styles["description-flex-box"]}>
@@ -73,8 +73,8 @@ export default function ShopApp(props) {
               <div className={styles.explanation} tabIndex={0}>
                 <h3>Ответ на вопрос о технических навыках</h3>
                 <p>
-                  Я не ограничен рамками одного технологического решения и могу
-                  решать абсолютно любые задачи. 
+                  Я не ограничен рамками одного технологического решения и
+                  решаю любые задачи. 
                   <br/>
                   Стек: JavaScript • TypeScript • React • Redux • HTML • CSS • SCSS • Node.js
                 </p>

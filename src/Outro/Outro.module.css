@@ -11,7 +11,7 @@
   background: var(--background-color);
   color: var(--primary-text-color);
 }
-.background.openning {
+.background.opening {
   animation-duration: 1s;
   animation-name: start-slide;
 }
@@ -31,7 +31,7 @@
   position: relative;
   top: 1em;
 }
-.content.openning {
+.content.opening {
   animation-name: fade;
   animation-duration: 2s;
 }

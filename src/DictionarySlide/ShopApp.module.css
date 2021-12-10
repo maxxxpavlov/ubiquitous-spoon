@@ -6,7 +6,7 @@
   background: url(media/1630412-blur.jpg) #edb7d9 no-repeat center/120%;
   background-size: cover;
 }
-.background.openning {
+.background.opening {
   animation-duration: 1s;
   animation-name: start-slide;
 }
@@ -26,7 +26,7 @@
   position: relative;
   top: 1em;
 }
-.content.openning {
+.content.opening {
   animation-name: fade;
   animation-duration: 2s;
 }
