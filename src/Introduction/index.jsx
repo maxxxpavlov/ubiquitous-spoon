@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./Introduction.module.css";
-import AnimatedBackground from './background-anim.svg'
+import AnimatedBackground from './background.svg'
 
 export default function Intro(props) {
   const { status, moveToNext, onOpen, idx, toRight } = props;
@@ -24,9 +24,9 @@ export default function Intro(props) {
         (status === "opening" ? styles.opening : "")
       }
     >
-      <div className={styles['animated-background']}>
+      {/* <div className={styles['animated-background']}>
       {status === 'open' && <object type="image/svg+xml" data={AnimatedBackground} class="logo" aria-label='animated background'></object>}
-      </div>
+      </div> */}
       <div
         className={
           styles.content +
