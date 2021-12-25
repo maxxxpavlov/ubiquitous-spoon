@@ -26,11 +26,11 @@ import ILoveYouImage from "./media/iloveyou.jpg";
 
 /**
  * Для более быстрого изучения код всей страницы находится в одном файле.
- * Функции идут сверху вних так же как компоненты идут от верхнего уровня иеархии к нижнему на странице.
- * Поэтому вам достаточно прочитать код сверху вних чтобы его понять.
+ * Функции идут сверху вниз так же как компоненты идут от верхнего уровня иеархии к нижнему на странице.
+ * Поэтому вам достаточно прочитать код сверху вниз чтобы его понять.
  *
  *
- * While I was building the applicaton I have been leaving comments
+ * While I was building the application I have been leaving comments
  * describing component's purpose both in Russian and English.
  * All application's components are in one file to let you explore the code easier and to make me easier to work.
  * The components are ordered almost as they are ordered on the page.
@@ -167,7 +167,7 @@ function TextButton({ onClick, children, disabled }) {
     </Typography>
   );
 }
-// Если проиложение запущено в iframe, уменьшить размер основного шрифта.
+// Если приложение запущено в iframe, уменьшить размер основного шрифта.
 //  пересчитается rem, что меняет шрифт на всей странице
 if (window.self !== window.top) {
   const sheet = document.styleSheets[0];
@@ -572,7 +572,7 @@ function DeliveryOption() {
         </Grid>
         <Grid item xs={12}>
           <Typography gutterBottom>
-            Г. Санкт-Питербург, улица Молдованских партизан, д. 12
+            Г. Санкт-Петербург, улица Молдованских партизан, д. 12
           </Typography>
         </Grid>
         <Divider />
